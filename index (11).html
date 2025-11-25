@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREE BRAINROT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script>
+        const CHARACTERS = [
+            {
+                id: 1,
+                name: "Esok Sekolah",
+                image: "https://cdn.discordapp.com/attachments/1440462991995834391/1442671292234072064/esok_sekolah.jpg?ex=692647d7&is=6924f657&hm=f33962a0317f2ad3854f6e37acc57c47242adfaeaa4b19b9ea76ab20a5871a4c&",
+            },
+            {
+                id: 2,
+                name: "Dragon Cannelloni",
+                image: "https://cdn.discordapp.com/attachments/1440462991995834391/1442671293601157241/dragon_cannelloni.jpg?ex=692647d7&is=6924f657&hm=232f4f758e6f05584087e014362b35d490295b8e24fcfc547702c89cb8b05853&",
+            },
+            {
+                id: 3,
+                name: "Strawberry Elepath",
+                image: "https://cdn.discordapp.com/attachments/1440462991995834391/1442671292670152754/strawberry_elepath.jpg?ex=692647d7&is=6924f657&hm=48bd378cca7a0f731ebef70c9c420d4591bc4eeff99b03e5427033ac1f268e1f&",
+            },
+            {
+                id: 4,
+                name: "Spaghetti Toilet",
+                image: "https://cdn.discordapp.com/attachments/1440462991995834391/1442671293039378699/spaghetti_toilet.jpg?ex=692647d7&is=6924f657&hm=d7f33a20d7455439279dc8ffef195e47e21a22166060ab0fd3250a5320492d54&",
+            },
+            {
+                id: 5,
+                name: "Meowl",
+                image: "https://cdn.discordapp.com/attachments/1440462991995834391/1442671293999878316/meowl.jpg?ex=692647d8&is=6924f658&hm=d1cf5dadde6b9dc040d055bdd460bcaa2d150b199f315966b55a40f334376554&",
+            },
+            {
+                id: 6,
+                name: "Los Mobilis",
+                image: "https://cdn.discordapp.com/attachments/1440462991995834391/1442671291873234994/los_mobilis.jpg?ex=692647d7&is=6924f657&hm=199d85aad9abc6fa28913391c0143d0e04e83e475d1365d7613e4d76992686df&",
+            },
+        ];
+
+        let selectedId = null;
+
+        function handleServerJoin() {
+            window.open("https://shorturl.asia/SG5kH", "_blank");
+        }
+
+        function handleSelectCharacter(id) {
+            selectedId = id;
+            render();
+        }
+
+        function render() {
+            const root = document.getElementById("root");
+            
+            root.innerHTML = `
+                <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
+                    <div class="max-w-6xl mx-auto">
+                        <!-- Header -->
+                        <div class="text-center mb-12">
+                            <h1 class="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 mb-4">
+                                FREE BRAINROT
+                            </h1>
+                            <p class="text-purple-200 text-lg md:text-xl">Choose your character and join the chaos</p>
+                        </div>
+
+                        <!-- Character Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                            ${CHARACTERS.map((character) => `
+                                <button
+                                    onclick="handleSelectCharacter(${character.id})"
+                                    class="group relative rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105 ${
+                                        selectedId === character.id
+                                            ? "ring-2 ring-purple-400 ring-offset-2 ring-offset-slate-900"
+                                            : "hover:ring-2 hover:ring-purple-300 hover:ring-offset-1 hover:ring-offset-slate-900"
+                                    }"
+                                >
+                                    <div class="relative h-80 bg-slate-800 overflow-hidden">
+                                        <img
+                                            src="${character.image}"
+                                            alt="${character.name}"
+                                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                        />
+                                        <!-- Overlay -->
+                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+                                    </div>
+
+                                    <!-- Character Name -->
+                                    <div class="absolute bottom-0 left-0 right-0 p-4">
+                                        <h2 class="text-2xl font-bold text-white text-center">${character.name}</h2>
+                                    </div>
+
+                                    <!-- Selection Indicator -->
+                                    ${selectedId === character.id ? `
+                                        <div class="absolute top-3 right-3 bg-purple-500 rounded-full p-2">
+                                            <div class="w-4 h-4 bg-white rounded-full"></div>
+                                        </div>
+                                    ` : ''}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Server Join Section -->
+                        <div class="text-center">
+                            ${selectedId ? `
+                                <div class="mb-6 animate-pulse">
+                                    <p class="text-purple-300 mb-4">${CHARACTERS.find((c) => c.id === selectedId)?.name} selected!</p>
+                                </div>
+                            ` : ''}
+                            <button
+                                onclick="handleServerJoin()"
+                                class="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/50"
+                            >
+                                CLAIM NOW
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initial render
+        render();
+    </script>
+</body>
+</html>                                   
